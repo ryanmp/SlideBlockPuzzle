@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GenerateLevel.cs">
     <Files>
-      <File FileName="Assets/GenerateLevel.cs" Line="75" Column="1" />
+      <File FileName="Assets/GenerateLevel.cs" Line="34" Column="22" />
+      <File FileName="Assets/PlayerInput.cs" Line="87" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
