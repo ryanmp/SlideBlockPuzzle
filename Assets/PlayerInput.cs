@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 	private float ratio_for_nondiagonal = 5.0f;
 
 	public GameObject GenerateLevel;
+	public GameObject MainCamera;
 
 
 	// Update is called once per frame
@@ -40,6 +41,7 @@ public class PlayerInput : MonoBehaviour
 					
 					float gestureTime = Time.time - fingerStartTime;
 					float gestureDist = (touch.position - fingerStartPos).magnitude;
+					float gestureVel = gestureDist / gestureTime;
 					
 					if (isSwipe && gestureTime < maxSwipeTime && gestureDist > minSwipeDist) {
 						Vector2 direction = touch.position - fingerStartPos;
@@ -54,46 +56,28 @@ public class PlayerInput : MonoBehaviour
 							} else {
 								swipeType = Vector2.up * Mathf.Sign (direction.y); // the swipe is vertical:
 							}
-							if (swipeType.x != 0.0f) {
-								if (swipeType.x > 0.0f) {
-									Debug.Log ("move right");
-								} else {
-									Debug.Log ("move left");
-								}
-							}
-							if (swipeType.y != 0.0f) {
-								if (swipeType.y > 0.0f) {
-									Debug.Log ("move up");
-								} else {
-									Debug.Log ("move down");
-								}
-							}
+							// swipeType set! 
 
-							//// diagonal swipes
-						} else {
+						} else { //// diagonal swipes
 							if (direction.y > 0) { //up
 								if (direction.x > 0) { // right
-									Debug.Log ("up right");
 									swipeType = new Vector2 (1f, 1f);
 								} else {
-									Debug.Log ("up left");
 									swipeType = new Vector2 (-1f, 1f);
 								}
 							} else { //down
 								if (direction.x > 0) { // right
-									Debug.Log ("down right");
 									swipeType = new Vector2 (1f, -1f);
 								} else {
-									Debug.Log ("down left");
 									swipeType = new Vector2 (-1f, -1f);
 								}
 							}
 						}	
 
 
-						//// run function!
-						GenerateLevel gl = GenerateLevel.GetComponent<GenerateLevel> ();
-						gl.ChangeGravity (swipeType);
+						GenerateLevel.GetComponent<GenerateLevel> ().ChangeGravity (swipeType, gestureVel);
+						MainCamera.GetComponent<MainCamera> ().MoveCamera (swipeType, gestureVel);
+
 
 
 					}
