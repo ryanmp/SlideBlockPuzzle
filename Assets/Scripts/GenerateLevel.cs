@@ -6,13 +6,19 @@ using System.Linq;
 /*
  * todo:
  * 
- * since it's no longer a block slide puzzle... why restrict swipe to 8 directions? swipe any direction!
- * add in enemies... red circles which start with outlines... then semi transparent fill from center. when full, pop!
- * destroying any player bubbles touching them (add in destroy w/ particles animation)
+ *
+ *
+ * circlepop enemies have random.range(min,max) amount of seeking towards 
+ * center of mass of player circles
+ *
+ * reset level when balls are all gone (score is at zero)
+ * use a cool animation like extending the zoom effect all the way out then pulling it back in
  * 
- * different level shapes, or obstacles within level? styling, the same as level outline
- * 
- * 
+ * add in UI stuff like counting down timer, total current score
+ * and button for menu/pause, and see if i can figure out how to rotate these
+ * items when phone rotates
+ *
+ *
  * */
 
 
@@ -47,6 +53,12 @@ public class GenerateLevel : MonoBehaviour
 	private static float max_enemy_spawn_time = 3.0f;
 
 	public GameObject c_holder;
+
+
+
+
+	private float started_reset_at;
+	private bool started_reset = false;
 
 
 
@@ -157,7 +169,6 @@ public class GenerateLevel : MonoBehaviour
 		e.transform.position = new Vector2 (Random.Range (-s, s), Random.Range (-s, s));
 		e.GetComponent<SpriteRenderer> ().color = level_color;
 		e.GetComponent<Rigidbody2D> ().velocity = new Vector2 (Random.Range (0f, 1f), Random.Range (0f, 1f)).normalized * Random.Range (-2f, 2f);
-		Destroy (e, 3f);
 		Invoke ("CreateEnemy", Random.Range (min_enemy_spawn_time, max_enemy_spawn_time));
 
 		// increase difficulty with each new enemy
@@ -175,11 +186,6 @@ public class GenerateLevel : MonoBehaviour
 		}
 
 	}
-
-
-
-
-
 	public void ChangeGravity (Vector2 v, float gestureVel)
 	{
 
@@ -202,7 +208,6 @@ public class GenerateLevel : MonoBehaviour
 
 		}*/
 
-
 		foreach (Rigidbody2D rb in c_holder.transform.GetComponentsInChildren<Rigidbody2D> ()) {
 			rb.velocity = v.normalized * gestureVel * BLOCK_VELOCITY;
 		}
@@ -222,6 +227,41 @@ public class GenerateLevel : MonoBehaviour
 		//blocks_obs.RemoveAt (0);
 
 	}
+
+
+
+
+	void Update ()
+	{
+
+		// start reset
+		if (c_holder.transform.childCount == 0 && !started_reset) {
+			started_reset = true;
+			started_reset_at = Time.time;
+		}
+
+
+		// other reset animation stuff?
+		if (started_reset) {
+
+			float z_loc = (Time.time - started_reset_at) * 100;
+
+			GameObject level_clone = Instantiate (level_outline, new Vector3 (0f, 0f, z_loc), Quaternion.identity) as GameObject;
+			level_clone.GetComponent<SpriteRenderer> ().color = level_color;
+		}
+
+
+		// reload!
+		if (Time.time - started_reset_at > 2.0f && started_reset) {
+			Application.LoadLevel (0);
+		}
+
+
+
+	}
+
+
+
 
 
 
