@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{0734B616-69A1-23B7-1DB4-84A6EA4E75FE}") = "SlideBlockPuzzle", "Assembly-CSharp-firstpass-vs.csproj", "{0F143705-BA29-9DA1-3C01-B6E394A40C21}"
+EndProject
 Project("{0734B616-69A1-23B7-1DB4-84A6EA4E75FE}") = "SlideBlockPuzzle", "Assembly-CSharp-vs.csproj", "{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}"
 EndProject
 Global
@@ -9,6 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F143705-BA29-9DA1-3C01-B6E394A40C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F143705-BA29-9DA1-3C01-B6E394A40C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F143705-BA29-9DA1-3C01-B6E394A40C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F143705-BA29-9DA1-3C01-B6E394A40C21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -17,7 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																													GlobalSection(MonoDevelopProperties) = preSolution
+																																							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

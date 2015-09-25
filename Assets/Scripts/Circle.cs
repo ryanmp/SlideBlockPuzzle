@@ -59,12 +59,12 @@ public class Circle : MonoBehaviour
 		float c_mag = c.relativeVelocity.magnitude;
 		//Debug.Log (c_mag);
 
-		if (Time.time > 1.0f && c_mag > 5.0f) { //avoid init collisions from instantiation
+		if (Time.time > 0.01f && c_mag > 5.0f) { //avoid init collisions from instantiation
 			AudioSource audio_source = GetComponent<AudioSource> ();
 			AudioClip clip = glock_notes [which_note];
 			audio_source.clip = clip;
 			float vol = c_mag / 30f;
-			audio_source.volume = Mathf.Clamp (vol, 0, 1) * 0.003f;
+			audio_source.volume = Mathf.Clamp (vol, 0, 1) * 0.03f;
 			audio_source.Play ();
 
 		}

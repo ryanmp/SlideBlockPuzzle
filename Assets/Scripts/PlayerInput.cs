@@ -11,16 +11,28 @@ public class PlayerInput : MonoBehaviour
 	private float minSwipeDist = 25.0f;
 	private float maxSwipeTime = 0.5f;
 
-	private float ratio_for_nondiagonal = 5.0f;
-
 	public GameObject GenerateLevel;
 	public GameObject MainCamera;
 
+	private Vector2 swipeType = Vector2.zero;
+
+	private float gestureVel = 0f;
+	public float minGestureVel = 150f;
+	public float maxGestureVel = 3000f;
+	private bool keyPressed = false;
 
 	// Update is called once per frame
 	void Update ()
 	{
+		MobileInput ();
+		KeyboardInput ();
+	}
+
+
+	void MobileInput ()
+	{
 		
+		//mobile input
 		if (Input.touchCount > 0) {
 			
 			foreach (Touch touch in Input.touches) {
@@ -41,60 +53,53 @@ public class PlayerInput : MonoBehaviour
 					
 					float gestureTime = Time.time - fingerStartTime;
 					float gestureDist = (touch.position - fingerStartPos).magnitude;
-					float gestureVel = gestureDist / gestureTime;
+					gestureVel = gestureDist / gestureTime;
 					
 					if (isSwipe && gestureTime < maxSwipeTime && gestureDist > minSwipeDist) {
 						Vector2 direction = touch.position - fingerStartPos;
-						Vector2 swipeType = Vector2.zero;
 
 						float ratio = Mathf.Abs (direction.x) / Mathf.Abs (direction.y);
-
-						/*
-						 * Code for 9 direction swipes
-						 * 
-						 * 
-						 * 
-						//// straight swipes (UP,RIGHT,DOWN,LEFT)
-						if (ratio > ratio_for_nondiagonal || ratio < 1f / ratio_for_nondiagonal) {
-							Debug.Log ("straight");
-							if (Mathf.Abs (direction.x) > Mathf.Abs (direction.y)) {
-								swipeType = Vector2.right * Mathf.Sign (direction.x); // the swipe is horizontal:
-							} else {
-								swipeType = Vector2.up * Mathf.Sign (direction.y); // the swipe is vertical:
-							}
-							// swipeType set! 
-
-						} else { //// diagonal swipes
-							if (direction.y > 0) { //up
-								if (direction.x > 0) { // right
-									swipeType = new Vector2 (1f, 1f);
-								} else {
-									swipeType = new Vector2 (-1f, 1f);
-								}
-							} else { //down
-								if (direction.x > 0) { // right
-									swipeType = new Vector2 (1f, -1f);
-								} else {
-									swipeType = new Vector2 (-1f, -1f);
-								}
-							}
-						}*/
-
+						
 						swipeType = direction.normalized;
 						//Debug.Log (swipeType);
 						//Debug.Log (gestureVel);
 						gestureVel = Mathf.Clamp (gestureVel, 150, 3000);
 						GenerateLevel.GetComponent<GenerateLevel> ().ChangeGravity (swipeType, gestureVel);
 						MainCamera.GetComponent<MainCamera> ().MoveCamera (swipeType, gestureVel);
-
-
-
+						
 					}
 					
 					break;
 				}
 			}
 		}
-		
+	}
+
+	void KeyboardInput ()
+	{
+		gestureVel = maxGestureVel;
+
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			keyPressed = true;
+			swipeType = new Vector2 (0f, 1f);
+		}
+		if (Input.GetKey (KeyCode.DownArrow)) {
+			keyPressed = true;
+			swipeType = new Vector2 (0f, -1f);
+		}
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			keyPressed = true;
+			swipeType = new Vector2 (-1f, 0f);
+		}
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			keyPressed = true;
+			swipeType = new Vector2 (1f, 0f);
+		}
+
+		if (keyPressed) {
+			keyPressed = false;
+			GenerateLevel.GetComponent<GenerateLevel> ().ChangeGravity (swipeType, gestureVel);
+			MainCamera.GetComponent<MainCamera> ().MoveCamera (swipeType, gestureVel);
+		}
 	}
 }
