@@ -209,7 +209,8 @@ public class GenerateLevel : MonoBehaviour
 		} else if (color_string.Length < 3) {
 			color = track_colors [int.Parse (color_string)];
 		} else {
-			Color.TryParseHexString (color_string, out color);
+
+			UnityEngine.ColorUtility.TryParseHtmlString (color_string, out color);
 		}
 		e.GetComponent<SpriteRenderer> ().color = color;
 

@@ -5,8 +5,6 @@ Project("{0734B616-69A1-23B7-1DB4-84A6EA4E75FE}") = "SlideBlockPuzzle", "Assembl
 EndProject
 Project("{0734B616-69A1-23B7-1DB4-84A6EA4E75FE}") = "SlideBlockPuzzle", "Assembly-CSharp.csproj", "{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}"
 EndProject
-Project("{0734B616-69A1-23B7-1DB4-84A6EA4E75FE}") = "SlideBlockPuzzle", "Assembly-UnityScript.unityproj", "{DDC233E6-DCCC-B7FE-6AE1-2E19D741A6AA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,15 +19,11 @@ Global
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C636406F-7C7B-0455-3DDA-BA8E59BFCEC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDC233E6-DCCC-B7FE-6AE1-2E19D741A6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDC233E6-DCCC-B7FE-6AE1-2E19D741A6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDC233E6-DCCC-B7FE-6AE1-2E19D741A6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDC233E6-DCCC-B7FE-6AE1-2E19D741A6AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																						GlobalSection(MonoDevelopProperties) = preSolution
+																																									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

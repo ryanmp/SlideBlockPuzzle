@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Music/JS/loopy_piano2.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
     <Files>
-      <File FileName="Assets/Scripts/GenerateLevel.cs" Line="69" Column="34" />
-      <File FileName="Assets/Resources/Music/JS/loopy_piano2.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GenerateLevel.cs" Line="194" Column="2" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="45" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
